@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, Initial-scale=1">
+    <title>Assignment 1</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="Assignment 1.css">
+    
+    <script type="text/javascript">
+      var people, asc1 = 1,
+          asc2 = 1,
+          asc3 = 1;
+      window.onload = function () {
+          people = document.getElementById("table_body");
+      }
+
+      function sort_table(tbody, col, asc){
+    var rows = tbody.rows, rlen = rows.length, arr = new Array(), i, j, cells, clen;
+    // fill the array with values from the table
+    for(i = 0; i < rlen; i++){
+    cells = rows[i].cells;
+    clen = cells.length;
+    arr[i] = new Array();
+        for(j = 0; j < clen; j++){
+        arr[i][j] = cells[j].innerHTML;
+        }
+    }
+    // sort the array by the specified column number (col) and order (asc)
+    arr.sort(function(a, b){
+        return (a[col] == b[col]) ? 0 : ((a[col] > b[col]) ? asc : -1*asc);
+    });
+    for(i = 0; i < rlen; i++){
+        arr[i] = "<td>"+arr[i].join("</td><td>")+"</td>";
+    }
+    tbody.innerHTML = "<tr>"+arr.join("</tr><tr>")+"</tr>";
+}
+  </script>
+  </head>
+  <body>
+    <div class="container">
+    <table class="_table">
+      <thead>
+        <tr>
+          <th>S No.</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>City</th>
+          <th>Country</th>
+          <th width="50px">
+            <div class="action_container">
+              <button class="success_bottom" onclick="createdown_tr('table_body')">
+                <i class="fa fa-arrow-up"></i>
+              </button>
+              <button class="success_top" onclick="create_tr('table_body')">
+                <i class="fa fa-arrow-down"></i>
+              </button>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody id="table_body">
+        <tr id="childElement">
+          <td>
+            <input type="integer"  class="form_control" placeholder="--">
+          </td>
+          <td>
+            <input type="text" class="form_control" placeholder="Sandeep">
+          </td>
+          <td>
+            <input type="text" class="form_control" placeholder="Surepalli">
+          </td>
+          <td>
+            <input type="text" class="form_control" placeholder="Mumbai">
+          </td>
+          <td>
+            <input type="text" class="form_control" placeholder="India">
+          </td>
+          <td>
+            <div class="action_container">
+              <button class="danger" onclick="remove_tr(this)">
+                <i class="fa fa-close"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <script src="Assignment 1.js">    </script>
+  </body>
+</html>
